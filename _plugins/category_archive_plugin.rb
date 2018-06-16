@@ -35,7 +35,7 @@ module Jekyll
 
     def posts_group_by_category(site)
       category_map = {}
-      site.posts.each {|p| p.categories.each {|c| (category_map[c] ||= []) << p } }
+      site.posts.docs.each {|p| p['categories'].each {|c| (category_map[c] ||= []) << p } }
       category_map
     end
   end
@@ -77,7 +77,7 @@ module Jekyll
     def initialize(site, dir, category, posts)
       @site = site
       @dir = dir
-      @category = category
+      @category = category.tr(" ", "-")
 
       if site.config['category_archive'] && site.config['category_archive']['slugify']
         @category_dir_name = Utils.slugify(@category) # require sanitize here
