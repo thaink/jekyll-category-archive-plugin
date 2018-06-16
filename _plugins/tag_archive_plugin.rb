@@ -77,7 +77,7 @@ module Jekyll
     def initialize(site, dir, tag, posts)
       @site = site
       @dir = dir
-      @tag = tag.tr(" ", "-")
+      @tag = tag
 
       if site.config['tag_archive'] && site.config['tag_archive']['slugify']
         @tag_dir_name = Utils.slugify(@tag) # require sanitize here
