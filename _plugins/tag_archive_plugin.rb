@@ -80,9 +80,9 @@ module Jekyll
       @tag = tag
 
       if site.config['tag_archive'] && site.config['tag_archive']['slugify']
-        @tag_dir_name = Utils.slugify(@tag) # require sanitize here
+        @tag_dir_name = Utils.slugify(@tag).tr(" ", "-") # require sanitize here
       else 
-        @tag_dir_name = @tag
+        @tag_dir_name = @tag.tr(" ", "-")
       end
 
       @layout =  site.config['tag_archive'] && site.config['tag_archive']['layout'] || 'tag_archive'
